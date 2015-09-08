@@ -30,10 +30,10 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    ToDo *laundry = [[ToDo alloc]initWithName:@"Laundry" Description:@"Take dirty clothes to the laundromat. Wash and dry clothes in two separate loads, one for light-colored clothes and one for dark-colored clothes." Priority:1];
+    ToDo *laundry = [[ToDo alloc]initWithName:@"Laundry" Description:@"Take dirty clothes to the laundromat. Wash and dry clothes in two separate loads, one for light-colored clothes and one for dark-colored clothes." Priority:3];
     ToDo *run = [[ToDo alloc]initWithName:@"Go for a Run" Description:@"Run a seven mile loop, starting from home, including the stairs up Crescent Heights Hill. The pace should be such that the whole run is moderately hard work." Priority:2];
-    ToDo *groceries = [[ToDo alloc]initWithName:@"Get Groceries" Description:@"Purchase eggs, coffee cream, two steaks and 40 ice cream bars from Lukes after dropping Chris off for work." Priority:1];
-    ToDo *pullWeeds = [[ToDo alloc]initWithName:@"Pull Weeds" Description:@"Pull weeds from the walkway and garden boxes in the back yard." Priority:3];
+    ToDo *groceries = [[ToDo alloc]initWithName:@"Get Groceries" Description:@"Purchase eggs, coffee cream, two steaks and 40 ice cream bars from Lukes after dropping Chris off for work." Priority:3];
+    ToDo *pullWeeds = [[ToDo alloc]initWithName:@"Pull Weeds" Description:@"Pull weeds from the walkway and garden boxes in the back yard." Priority:1];
     
     run.isToDoComplete = YES;
     
@@ -61,7 +61,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.toDoTasks[indexPath.row];
+        ToDo *object = self.toDoTasks[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
@@ -82,7 +82,7 @@
     ToDo *task = self.toDoTasks[indexPath.row];
 //    toDoCell.titleLabel.text = task.toDoName;
     toDoCell.descriptionLabel.text = task.toDoDescription;
-    toDoCell.priorityLabel.text = [NSString stringWithFormat:@"%ld", (long)task.toDoPriority];
+    toDoCell.priorityImage.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%ld", (long)task.toDoPriority]stringByAppendingString:@"StarsSmall"]];
     
     if (task.isToDoComplete) {
         NSDictionary* attributes = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]};

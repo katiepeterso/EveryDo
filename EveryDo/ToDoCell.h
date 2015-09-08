@@ -10,7 +10,7 @@
 
 @interface ToDoCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *priorityLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *priorityImage;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 
