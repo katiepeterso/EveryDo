@@ -8,10 +8,11 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "ToDo.h"
 
 @interface MasterViewController ()
 
-@property NSMutableArray *objects;
+@property NSMutableArray *toDoTasks;
 @end
 
 @implementation MasterViewController
@@ -27,6 +28,15 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    
+    ToDo *laundry = [[ToDo alloc]initWithName:@"Laundry" Description:@"Take dirty clothes to the laundromat. Wash and dry clothes in two separate loads, one for light-colored clothes and one for dark-colored clothes." Priority:1];
+    ToDo *run = [[ToDo alloc]initWithName:@"Go for a Run" Description:@"Run a seven mile loop, starting from home, including the stairs up Crescent Heights Hill. The pace should be such that the whole run is moderately hard work." Priority:2];
+    ToDo *groceries = [[ToDo alloc]initWithName:@"Get Groceries" Description:@"Purchase eggs, coffee cream, two steaks and 40 ice cream bars from Lukes after dropping Chris off for work." Priority:1];
+    ToDo *pullWeeds = [[ToDo alloc]initWithName:@"Pull Weeds" Description:@"Pull weeds from the walkway and garden boxes in the back yard." Priority:3];
+    
+    NSArray *toDoArray = @[laundry, run, groceries, pullWeeds];
+    self.toDoTasks = [NSMutableArray new];
+    [self.toDoTasks addObjectsFromArray:toDoArray];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,10 +45,10 @@
 }
 
 - (void)insertNewObject:(id)sender {
-    if (!self.objects) {
-        self.objects = [[NSMutableArray alloc] init];
+    if (!self.toDoTasks) {
+        self.toDoTasks = [[NSMutableArray alloc] init];
     }
-    [self.objects insertObject:[NSDate date] atIndex:0];
+    [self.toDoTasks insertObject:[NSDate date] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -48,7 +58,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.objects[indexPath.row];
+        NSDate *object = self.toDoTasks[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
@@ -60,13 +70,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
+    return self.toDoTasks.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
-    NSDate *object = self.objects[indexPath.row];
+    NSDate *object = self.toDoTasks[indexPath.row];
     cell.textLabel.text = [object description];
     return cell;
 }
@@ -78,7 +88,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.objects removeObjectAtIndex:indexPath.row];
+        [self.toDoTasks removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
