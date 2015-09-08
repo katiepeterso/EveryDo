@@ -9,8 +9,9 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "ToDo.h"
+#import "ToDoCell.h"
 
-@interface MasterViewController ()
+@interface MasterViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property NSMutableArray *toDoTasks;
 @end
@@ -33,6 +34,8 @@
     ToDo *run = [[ToDo alloc]initWithName:@"Go for a Run" Description:@"Run a seven mile loop, starting from home, including the stairs up Crescent Heights Hill. The pace should be such that the whole run is moderately hard work." Priority:2];
     ToDo *groceries = [[ToDo alloc]initWithName:@"Get Groceries" Description:@"Purchase eggs, coffee cream, two steaks and 40 ice cream bars from Lukes after dropping Chris off for work." Priority:1];
     ToDo *pullWeeds = [[ToDo alloc]initWithName:@"Pull Weeds" Description:@"Pull weeds from the walkway and garden boxes in the back yard." Priority:3];
+    
+    run.isToDoComplete = YES;
     
     NSArray *toDoArray = @[laundry, run, groceries, pullWeeds];
     self.toDoTasks = [NSMutableArray new];
@@ -74,11 +77,24 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    ToDoCell *toDoCell = [tableView dequeueReusableCellWithIdentifier:@"ToDoCell" forIndexPath:indexPath];
 
-    NSDate *object = self.toDoTasks[indexPath.row];
-    cell.textLabel.text = [object description];
-    return cell;
+    ToDo *task = self.toDoTasks[indexPath.row];
+//    toDoCell.titleLabel.text = task.toDoName;
+    toDoCell.descriptionLabel.text = task.toDoDescription;
+    toDoCell.priorityLabel.text = [NSString stringWithFormat:@"%ld", (long)task.toDoPriority];
+    
+    if (task.isToDoComplete) {
+        NSDictionary* attributes = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]};
+        NSAttributedString* attributedString = [[NSAttributedString alloc] initWithString:task.toDoName attributes:attributes];
+        
+        toDoCell.titleLabel.attributedText = attributedString;
+        
+    } else {
+        toDoCell.titleLabel.text = task.toDoName;
+    }
+
+    return toDoCell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

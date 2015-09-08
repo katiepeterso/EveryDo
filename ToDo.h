@@ -12,7 +12,7 @@
 
 @property (nonatomic) NSString *toDoName;
 @property (nonatomic) NSString *toDoDescription;
-@property (nonatomic) int toDoPriority;
+@property (nonatomic) NSInteger toDoPriority;
 @property (nonatomic) BOOL isToDoComplete;
 
 - (instancetype)initWithName:(NSString *)name Description:(NSString *)description Priority:(int)priority;
