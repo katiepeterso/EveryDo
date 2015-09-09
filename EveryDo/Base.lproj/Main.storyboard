@@ -70,10 +70,12 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="descriptionLabel" destination="Xc3-KU-Sra" id="Eli-08-Z0e"/>
                                     <outlet property="priorityImage" destination="eiG-4s-TIk" id="U9D-DZ-0Qr"/>
                                     <outlet property="titleLabel" destination="J6U-qo-AvJ" id="nRc-t1-nmj"/>
+                                    <outletCollection property="gestureRecognizers" destination="Rm0-vE-aVi" appends="YES" id="E95-Ku-1I2"/>
                                     <segue destination="Ah7-4n-0Wa" kind="show" identifier="showDetail" id="jUr-3t-vfg"/>
                                 </connections>
                             </tableViewCell>
@@ -87,6 +89,11 @@
                     <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Rm0-vE-aVi">
+                    <connections>
+                        <action selector="swipeToMarkComplete:" destination="pGg-6v-bdr" id="dv5-B4-a1K"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="605" y="64"/>
         </scene>

@@ -123,5 +123,18 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
 }
+- (IBAction)swipeToMarkComplete:(UISwipeGestureRecognizer *)sender {
+    CGPoint swipeLocation = [sender locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:swipeLocation];
+    
+    ToDo *task = self.toDoTasks[indexPath.row];
+    if (task.isToDoComplete) {
+        task.isToDoComplete = NO;
+    }
+    else {
+        task.isToDoComplete = YES;
+    }
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+}
 
 @end
