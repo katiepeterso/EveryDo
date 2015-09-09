@@ -17,6 +17,7 @@
 		AA2EE63E1B9F5CC40068D910 /* EveryDoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2EE63D1B9F5CC40068D910 /* EveryDoTests.m */; };
 		AA2EE6491B9F5F440068D910 /* ToDo.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2EE6481B9F5F440068D910 /* ToDo.m */; };
 		AA2EE64C1B9F74C40068D910 /* ToDoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2EE64B1B9F74C40068D910 /* ToDoCell.m */; };
+		AA2EE64F1B9F9F720068D910 /* AddNewToDoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2EE64E1B9F9F720068D910 /* AddNewToDoVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		AA2EE6481B9F5F440068D910 /* ToDo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToDo.m; path = ../ToDo.m; sourceTree = "<group>"; };
 		AA2EE64A1B9F74C40068D910 /* ToDoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoCell.h; sourceTree = "<group>"; };
 		AA2EE64B1B9F74C40068D910 /* ToDoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoCell.m; sourceTree = "<group>"; };
+		AA2EE64D1B9F9F720068D910 /* AddNewToDoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewToDoVC.h; sourceTree = "<group>"; };
+		AA2EE64E1B9F9F720068D910 /* AddNewToDoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewToDoVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				AA2EE6481B9F5F440068D910 /* ToDo.m */,
 				AA2EE64A1B9F74C40068D910 /* ToDoCell.h */,
 				AA2EE64B1B9F74C40068D910 /* ToDoCell.m */,
+				AA2EE64D1B9F9F720068D910 /* AddNewToDoVC.h */,
+				AA2EE64E1B9F9F720068D910 /* AddNewToDoVC.m */,
 				AA2EE62B1B9F5CC40068D910 /* Main.storyboard */,
 				AA2EE62E1B9F5CC40068D910 /* Images.xcassets */,
 				AA2EE6301B9F5CC40068D910 /* LaunchScreen.xib */,
@@ -240,6 +245,7 @@
 				AA2EE6211B9F5CC40068D910 /* main.m in Sources */,
 				AA2EE62A1B9F5CC40068D910 /* DetailViewController.m in Sources */,
 				AA2EE64C1B9F74C40068D910 /* ToDoCell.m in Sources */,
+				AA2EE64F1B9F9F720068D910 /* AddNewToDoVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

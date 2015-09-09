@@ -59,7 +59,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)toggleCompletion:(id)sender {
+- (IBAction)toggleCompletion:(UIButton *)sender {
+    if (self.detailItem.isToDoComplete) {
+        self.detailItem.isToDoComplete = NO;
+        [self.detailCompleteButton setTitle:@"\u2610" forState:UIControlStateNormal];
+    }
+    else {
+        self.detailItem.isToDoComplete = YES;
+        [self.detailCompleteButton setTitle:@"\u2611" forState:UIControlStateNormal];
+    }
 }
 
 @end

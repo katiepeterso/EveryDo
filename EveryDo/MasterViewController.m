@@ -10,8 +10,9 @@
 #import "DetailViewController.h"
 #import "ToDo.h"
 #import "ToDoCell.h"
+#import "AddNewToDoVC.h"
 
-@interface MasterViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MasterViewController () <UITableViewDelegate, UITableViewDataSource, AddNewToDoDelegate>
 
 @property NSMutableArray *toDoTasks;
 @end
@@ -47,16 +48,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender {
-    if (!self.toDoTasks) {
-        self.toDoTasks = [[NSMutableArray alloc] init];
-    }
-    [self.toDoTasks insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
-#pragma mark - Segues
+#pragma mark - Segues and Delegates
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
@@ -64,6 +61,22 @@
         ToDo *object = self.toDoTasks[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
+}
+
+- (void)insertNewObject:(id)sender {
+    if (!self.toDoTasks) {
+        self.toDoTasks = [[NSMutableArray alloc] init];
+    }
+    
+    AddNewToDoVC *addNewVC = (AddNewToDoVC *)[self.storyboard instantiateViewControllerWithIdentifier: @"AddNewToDoVC"];
+    addNewVC.delegate = self;
+    [self presentViewController:addNewVC animated:YES completion:nil];
+}
+
+-(void)sendTitle:(NSString *)title Description:(NSString *)description Priority:(NSInteger)priority Completion:(BOOL)isComplete {
+    ToDo *userAddedToDo = [[ToDo alloc]initWithName:title Description:description Priority:priority];
+    userAddedToDo.isToDoComplete = isComplete;
+    [self.toDoTasks addObject:userAddedToDo];
 }
 
 #pragma mark - Table View

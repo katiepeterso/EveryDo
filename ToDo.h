@@ -15,6 +15,6 @@
 @property (nonatomic) NSInteger toDoPriority;
 @property (nonatomic) BOOL isToDoComplete;
 
-- (instancetype)initWithName:(NSString *)name Description:(NSString *)description Priority:(int)priority;
+- (instancetype)initWithName:(NSString *)name Description:(NSString *)description Priority:(NSInteger)priority;
 
 @end

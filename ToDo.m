@@ -10,7 +10,7 @@
 
 @implementation ToDo
 
-- (instancetype)initWithName:(NSString *)name Description:(NSString *)description Priority:(int)priority
+- (instancetype)initWithName:(NSString *)name Description:(NSString *)description Priority:(NSInteger)priority
 {
     self = [super init];
     if (self) {
